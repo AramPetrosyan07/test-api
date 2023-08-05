@@ -8,6 +8,17 @@ app.get("/test", (req, res) => {
   res.send(`Your IP address is: ${clientIP}`);
 });
 
+app.get("/test2", (req, res) => {
+  const clientIP = req.connection.remoteAddress;
+  res.send(`Your IP address is: ${clientIP}`);
+});
+
+app.get("/test3", (req, res) => {
+  const clientIP =
+    req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  res.send(`Your IP address is: ${clientIP}`);
+});
+
 app.listen(5000, (err) => {
   if (err) {
     console.log(err);
